@@ -1,16 +1,6 @@
-<p>
-  <a href="https://www.aihero.dev/s/skills-newsletter">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skills-repo-dark_2x.png">
-      <source media="(prefers-color-scheme: light)" srcset="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png">
-      <img alt="Skills" src="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png" width="369">
-    </picture>
-  </a>
-</p>
-
 # Skills For Real Engineers
 
-[![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
+[![skills.sh](https://skills.sh/b/jrkopp/pocock-skills)](https://skills.sh/jrkopp/skills-pocock)
 
 My agent skills that I use every day to do real engineering - not vibe coding.
 
@@ -18,30 +8,33 @@ Developing real applications is hard. Approaches like GSD, BMAD, and Spec-Kit tr
 
 These skills are designed to be small, easy to adapt, and composable. They work with any model. They're based on decades of engineering experience. Hack around with them. Make them your own. Enjoy.
 
-If you want to keep up with changes to these skills, and any new ones I create, you can join ~60,000 other devs on my newsletter:
-
-[Sign Up To The Newsletter](https://www.aihero.dev/s/skills-newsletter)
-
 ## Quickstart (30-second setup)
 
 1. Run the skills.sh installer:
 
 ```bash
-npx skills@latest add mattpocock/skills
+npx skills@latest add jrkopp/skills
 ```
 
-2. Pick the skills you want, and which coding agents you want to install them on. **Make sure you select `/setup-matt-pocock-skills`**.
+2. Pick the skills you want, and which coding agents you want to install them on. **Make sure you select `/setup-matt-pocock-skills` or `set-up-existing-project`**.
 
-3. Run `/setup-matt-pocock-skills` in your agent. It will:
+3a. If you are starting a new project
+   - Run `/setup-matt-pocock-skills` in your agent. It will:
    - Ask you which issue tracker you want to use (GitHub, Linear, or local files)
    - Ask you what labels you apply to ticks when you triage them (`/triage` uses labels)
    - Ask you where you want to save any docs we create
 
-4. Bam - you're ready to go.
+3b. If you are adding LLM processing and better issue tracking to an existing project
+   - Run `/setup-existing-project` in your agent. It will:
+   - Use GitHub as the issue tracker.
+   - Define the labels used for triage and for issue type
+   - Save created documents to docs/.  
+
+4. **Bam** - you're ready to go.
 
 ## Why These Skills Exist
 
-I built these skills as a way to fix common failure modes I see with Claude Code, Codex, and other coding agents.
+These skills are a way to fix common failure modes with Claude Code, Codex, and other coding agents.
 
 ### #1: The Agent Didn't Do What I Want
 
@@ -59,6 +52,8 @@ This is just the same in the AI age. There is a communication gap between you an
 - [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) - same as [`/grill-me`](./skills/productivity/grill-me/SKILL.md), but adds more goodies (see below)
 
 These are my most popular skills. They help you align with the agent before you get started, and think deeply about the change you're making. Use them _every_ time you want to make a change.
+
+** For existing projects its essential to document the code base so the both the engineer and the LLM have a good understanding of major modules, important classes, functions and interfaces and main process flows.  The `\code-base` skill is used to generate `Codebase.md` in `docs\`.
 
 ### #2: The Agent Is Way Too Verbose
 
@@ -156,6 +151,10 @@ Skills I use daily for code work.
 - **[to-prd](./skills/engineering/to-prd/SKILL.md)** — Turn the current conversation context into a PRD and submit it as a GitHub issue. No interview — just synthesizes what you've already discussed.
 - **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** — Tell the agent to zoom out and give broader context or a higher-level perspective on an unfamiliar section of code.
 - **[prototype](./skills/engineering/prototype/SKILL.md)** — Build a throwaway prototype to flesh out a design — either a runnable terminal app for state/business-logic questions, or several radically different UI variations toggleable from one route.
+- **[setup-existing-project](./skills/engineering/setup-existing-project/SKILL.md)** — Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume. Run once per repo before using `create-issue` or `implement-issue`.
+- **[create-issue](./skills/engineering/create-issue/SKILL.md)** — Uses the `\grill-me` skill to elicit details and clarify an new issue with the developer.  Then, creates the issue it GitHub.
+- **[implement-issue](./skills/engineering/implement-issue/SKILL.md)** — Creates a design/solution for an issue, reviews with the engineer, creates a Git worktree and branch, develops code, tests code, creates PR, merges PR, issue autocloses.
+- **[review-codebase](./skills/project/review-codebase/SKILL.md)** — Explores an existing codebase and produces `docs/CODEBASE.md`: purpose, solution structure, architecture diagram, deep module reference with public APIs, tests, config files, and key data flows. Fully automated. Called by `/setup-existing-project` if `docs/CODEBASE.md` is absent.
 
 ### Productivity
 

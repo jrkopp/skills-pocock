@@ -14,6 +14,11 @@
     "./skills/productivity/caveman",
     "./skills/productivity/grill-me",
     "./skills/productivity/handoff",
-    "./skills/productivity/write-a-skill"
+    "./skills/productivity/write-a-skill",
+    "./skills/project/setup-existing-project",
+    "./skills/project/create-issue",
+    "./skills/project/implement-issue",
+    "./skills/project/merge-issue",
+    "./skills/project/review-codebase",
   ]
 }
