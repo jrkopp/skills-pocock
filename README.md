@@ -13,8 +13,20 @@ These skills are designed to be small, easy to adapt, and composable. They work 
 1. Run the skills.sh installer:
 
 ```bash
-npx skills@latest add jrkopp/skills
+npx skills@latest add jrkopp/skills-pocock
 ```
+
+The `skills` CLI supports several source formats. Use the branch-specific form to install from a branch other than `main`:
+
+| Format | Full command |
+|---|---|
+| `owner/repo` shorthand — always installs from `main` | `npx skills@latest add jrkopp/skills-pocock` |
+| Full GitHub URL — always installs from `main` | `npx skills@latest add https://github.com/jrkopp/skills-pocock` |
+| Branch-specific path — installs from a named branch | `npx skills@latest add https://github.com/jrkopp/skills-pocock/tree/dev` |
+| Local path — installs from a local directory | `npx skills@latest add ./skills-pocock` |
+
+
+> The main branch will give the latest copy of Matt Pocock's skills.  If you want John's customizations and project skills, install the dev branch using the Branch-specific command.
 
 2. Pick the skills you want, and which coding agents you want to install them on. **Make sure you select `/setup-matt-pocock-skills` or `set-up-existing-project`**.
 
