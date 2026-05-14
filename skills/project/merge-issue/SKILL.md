@@ -1,6 +1,6 @@
 ---
 name: merge-issue
-description: Opens a PR for an implemented issue, waits for CI checks if present, squash merges into the default branch, auto-closes the issue, deletes the remote branch, and removes the local worktree. Runs AFK unless there are merge conflicts or CI failures. Use when a user wants to merge a completed implementation: "/merge-issue 42".
+description: 'Opens a PR for an implemented issue, waits for CI checks if present, squash merges into the default branch, auto-closes the issue, deletes the remote branch, and removes the local worktree. Runs AFK unless there are merge conflicts or CI failures. Use when a user wants to merge a completed implementation: "/merge-issue 42".'
 disable-model-invocation: true
 ---
 

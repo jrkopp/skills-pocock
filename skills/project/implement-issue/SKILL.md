@@ -1,6 +1,6 @@
 ---
 name: implement-issue
-description: Implements a GitHub issue using TDD. Fetches the issue, creates a git worktree and branch, produces a lightweight design, then codes and tests using red-green-refactor vertical slices. Use when a user wants to implement an issue: "/implement-issue 42".
+description: 'Implements a GitHub issue using TDD. Fetches the issue, creates a git worktree and branch, produces a lightweight design, then codes and tests using red-green-refactor vertical slices. Use when a user wants to implement an issue: "/implement-issue 42".'
 disable-model-invocation: true
 ---
 
