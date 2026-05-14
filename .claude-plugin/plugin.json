@@ -18,6 +18,7 @@
     "./skills/project/setup-existing-project",
     "./skills/project/create-issue",
     "./skills/project/implement-issue",
+    "./skills/project/implement-issue-vs",
     "./skills/project/merge-issue",
     "./skills/project/review-codebase",
   ]

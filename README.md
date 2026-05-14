@@ -166,6 +166,7 @@ Skills I use daily for code work.
 - **[setup-existing-project](./skills/engineering/setup-existing-project/SKILL.md)** — Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume. Run once per repo before using `create-issue` or `implement-issue`.
 - **[create-issue](./skills/engineering/create-issue/SKILL.md)** — Uses the `\grill-me` skill to elicit details and clarify an new issue with the developer.  Then, creates the issue it GitHub.
 - **[implement-issue](./skills/engineering/implement-issue/SKILL.md)** — Creates a design/solution for an issue, reviews with the engineer, creates a Git worktree and branch, develops code, tests code, creates PR, merges PR, issue autocloses.
+- **[implement-issue-vs](./skills/project/implement-issue-vs/SKILL.md)** — Visual Studio variant of `/implement-issue`. Pauses after design approval for the user to create new source files in Visual Studio before populating them.
 - **[review-codebase](./skills/project/review-codebase/SKILL.md)** — Explores an existing codebase and produces `docs/CODEBASE.md`: purpose, solution structure, architecture diagram, deep module reference with public APIs, tests, config files, and key data flows. Fully automated. Called by `/setup-existing-project` if `docs/CODEBASE.md` is absent.
 
 ### Productivity

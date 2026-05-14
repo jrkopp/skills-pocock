@@ -1,14 +1,23 @@
 ---
-name: implement-issue
-description: 'Implements a GitHub issue using TDD. Fetches the issue, creates a git worktree and branch, produces a lightweight design, then codes and tests using red-green-refactor vertical slices. Use when a user wants to implement an issue: "/implement-issue 42".'
+name: implement-issue-vs
+description: 'Visual Studio variant of /implement-issue. Identical except that new source files are never created autonomously — the skill pauses after design approval for the user to create files in Visual Studio, then populates them. Use this instead of /implement-issue for C++/C# repos managed in Visual Studio.'
 disable-model-invocation: true
 ---
 
-# Implement Issue
+# Implement Issue (Visual Studio)
+
+> **Maintenance note — this is a Visual Studio variant of `/implement-issue`.**
+>
+> The two skills are identical except for the sections marked `[VS VARIANT]` below:
+> - **Step 4 (design):** adds a pre-coding file-creation checkpoint after design approval.
+> - **Step 5 (TDD):** adds a guard that pauses before writing to any file that does not yet exist.
+>
+> When updating `/implement-issue`, apply the same change here **except** within those two sections.
+> When updating either VS-specific section, do **not** back-port to `/implement-issue`.
 
 Take a `ready-for-build` GitHub issue from specification to working, tested code — on its own branch and worktree, fully traceable back to the issue.
 
-Usage: `/implement-issue <issue-number>`
+Usage: `/implement-issue-vs <issue-number>`
 
 This skill runs in **two phases**, each in its own agent session:
 
@@ -36,7 +45,7 @@ git branch --show-current
 
 **a. Confirm the issue number was provided.**
 If no issue number was passed, stop:
-> "Please provide an issue number. Example: `/implement-issue 42`
+> "Please provide an issue number. Example: `/implement-issue-vs 42`
 > If the issue doesn't exist yet, run `/create-issue` first."
 
 **b. Check the current branch.**
@@ -103,7 +112,7 @@ Next step — start a NEW agent session with its initial directory set to:
 
     ../worktrees/{type}-{slug}-{number}
 
-Then run /implement-issue {number} in that session.
+Then run /implement-issue-vs {number} in that session.
 The new agent will detect it is already in the worktree and begin the
 implementation phase (design → code → tests → commit) with a clean context window.
 
@@ -133,7 +142,9 @@ Apply the **deletion test** from `/improve-codebase-architecture` to any module 
 Present a design proposal to the user **before writing any code or tests**. Cover:
 
 **Modules affected**
-List every module (file, class, package) that will be created or changed. For each, note whether it is being created, modified, or deepened (interface change vs implementation change only).
+List every module (file, class, package) that will be modified or deepened (interface change vs implementation change only).
+
+For any module that must be **created** from scratch, list it separately under **New files required** (see below) — do not mark it as modified.
 
 **Interface changes**
 For any public interface that changes, describe the before and after in plain English. No code snippets unless a type shape or state machine encodes a decision more precisely than prose can.
@@ -154,6 +165,28 @@ Ask the user:
 
 Do not proceed until the user approves the design.
 
+> **[VS VARIANT] File-creation checkpoint**
+>
+> After the user approves the design, check whether any **new files** are required.
+>
+> If there are none, proceed directly to Step 5.
+>
+> If new files are needed, list them and stop:
+>
+> ```
+> Before I begin coding, these files need to be created inside Visual Studio
+> (right-click the project → Add → New Item):
+>
+>   src/Foo.h
+>   src/Foo.cpp
+>
+> Please create them now, then confirm when done.
+> ```
+>
+> **Do not create these files yourself.** Wait for the user's confirmation before
+> proceeding. Visual Studio must register the files in `.vcxproj` — creating them
+> outside the IDE will leave them out of the build.
+
 ### 5. Implement with TDD
 
 Follow the `/tdd` red-green-refactor loop — one vertical slice at a time. **Never write tests in bulk first.**
@@ -170,6 +203,25 @@ Rules (from `/tdd`):
 - Only enough code to pass the current test — no speculative features
 - A test that breaks on internal refactor (but not behaviour change) is a bad test
 - Run the full test suite after each GREEN step to catch regressions
+
+> **[VS VARIANT] Per-file guard**
+>
+> Before writing code to any file, verify the file already exists on disk:
+>
+> ```sh
+> test -f <path>        # or: Get-Item <path>
+> ```
+>
+> If the file does **not** exist, stop:
+>
+> ```
+> <path> does not exist yet. Please create it in Visual Studio
+> (right-click the project → Add → New Item), then confirm when done.
+> ```
+>
+> Wait for confirmation before writing anything. Never use the `create` tool
+> on source files — only use `edit` to populate files the user has already
+> created in the IDE.
 
 After all acceptance criteria tests pass:
 
