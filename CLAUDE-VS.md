@@ -1,3 +1,22 @@
+# Write Permission
+
+**The agent MUST NOT edit, write, create, or update any file without explicit user approval for each change.**
+
+Before modifying any file:
+1. Describe exactly what change you intend to make and why
+2. Wait for the user to confirm
+3. Only then apply the change
+
+This applies to all file types: source files, headers, YAML, RC files, configuration, documentation, and any other file in the repository.
+
+# Build Rules
+
+**The agent MUST NOT perform builds.** All builds are performed by the user via Visual Studio.
+
+- When a build is needed, ask the user to build in Visual Studio and report back results
+- Do not invoke MSBuild, cl.exe, or any compiler/linker from the command line
+- Do not delete, move, or modify build intermediate files (PDB, PCH, obj, tlog, etc.)
+
 # Overview
 
 - Find reusable skills under `agents/skills`
@@ -58,6 +77,7 @@ If new files are needed:
 
 # Build Safety
 
+- **Do not perform builds** — see Build Rules above
 - Do not change compiler flags or warning levels unless explicitly requested
 - Preserve existing pragma warning suppressions
 - Preserve existing include ordering conventions

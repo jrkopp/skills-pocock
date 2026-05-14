@@ -127,6 +127,17 @@ Do NOT continue in this session.
 
 *(Runs in a fresh agent session rooted at the worktree directory.)*
 
+> **[VS VARIANT] Write permission**
+>
+> Before modifying any file, describe the exact change and wait for explicit user approval.
+> Apply the change only after the user confirms. This applies to every file without exception.
+
+> **[VS VARIANT] No command-line builds**
+>
+> The agent MUST NOT invoke MSBuild, cl.exe, or any build tool from the command line.
+> When a build is needed, ask the user to build via Visual Studio and report back results.
+> Do not delete, move, or modify build intermediate files (PDB, PCH, obj, tlog, etc.).
+
 ### 3. Read context
 
 Before designing anything:
@@ -202,7 +213,12 @@ Rules (from `/tdd`):
 - Tests verify behaviour through **public interfaces only** — not implementation details
 - Only enough code to pass the current test — no speculative features
 - A test that breaks on internal refactor (but not behaviour change) is a bad test
-- Run the full test suite after each GREEN step to catch regressions
+
+> **[VS VARIANT] Build and test via Visual Studio**
+>
+> After each GREEN step, do NOT run tests from the command line.
+> Instead, ask the user to build the solution and run the test suite in Visual Studio,
+> then report back results before proceeding to the next slice.
 
 > **[VS VARIANT] Per-file guard**
 >
