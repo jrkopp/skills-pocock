@@ -1,6 +1,6 @@
 ---
 name: create-issue
-description: Creates a single well-specified GitHub issue from a user's description of a bug, feature, enhancement, or refactor. Runs a /grill-me interview to develop deep understanding, drafts a structured issue body, gets user approval, then publishes to GitHub with the correct type and triage labels. Use when a user describes a new issue, bug, feature, enhancement, or refactor they want to track.
+description: Creates a single well-specified GitHub issue from a user's description of a bug, feature, enhancement, or refactor. Runs a /grill-with-docs interview to develop deep understanding, drafts a structured issue body, gets user approval, then publishes to GitHub with the correct type and triage labels. Use when a user describes a new issue, bug, feature, enhancement, or refactor they want to track.
 disable-model-invocation: true
 ---
 
@@ -26,7 +26,7 @@ From the user's prompt, identify which type this is:
 
 If unclear, ask before grilling.
 
-### 2. Run /grill-me
+### 2. Run /grill-with-docs
 
 Interview the user relentlessly about the issue. The goal is to reach a shared understanding where every significant ambiguity is resolved.
 
